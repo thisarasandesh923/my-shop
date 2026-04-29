@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { Product, ProductsResponse } from './types/products'
-
+import ProductCard from './components/ProductCard.vue'
 const products =    ref<Product[]>([])
 const loading =ref(true)
 
@@ -14,7 +14,7 @@ onMounted(async () => {
 </script>
 
 <template>
-   <div class="min-h-screen bg-gray-100 p-8">
+  <div class="min-h-screen bg-gray-100 p-8">
     
     <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">
       My Shop
@@ -25,9 +25,13 @@ onMounted(async () => {
     </div>
 
     <div v-else>
-      <p class="text-center text-green-600">
-        Found {{ products.length }} products!
-      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <ProductCard 
+          v-for="product in products" 
+          :key="product.id"
+          :product="product"
+        />
+      </div>
     </div>
 
   </div>
