@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const emit = defineEmits<{
+  search: [query: string]
+}>()
 </script>
 
 <template>
@@ -12,6 +15,7 @@
       type="text"
       placeholder="Search products..."
       class="border border-gray-300 rounded-lg px-4 py-2 w-64 focus:outline-none focus:border-blue-500"
+      @input="emit('search', ($event.target as HTMLInputElement).value)"
     />
 
   </nav>
