@@ -6,6 +6,7 @@ import ProductCard from './components/ProductCard.vue'
 import NavBar from './components/NavBar.vue'
 import FilterBar from './components/FilterBar.vue'
 import ProductModal from './components/ProductModal.vue'
+import Footer from './components/Footer.vue'
 
 const products =    ref<Product[]>([])
 const loading =ref(true)
@@ -85,6 +86,6 @@ onMounted(async () => {
       :product="selectedProduct"
       @close="closeModal"
     />
-
+    <Footer />
   </div>
 </template>

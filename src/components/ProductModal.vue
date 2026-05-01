@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import type { Product } from '../types/products'
+import { useCartStore } from '../stores/cartStore'
 
-defineProps<{ product: Product }>()
+defineProps<{
+  product: Product
+}>()
 
 const emit = defineEmits<{
   close: []
 }>()
+
+const cartStore = useCartStore()
 </script>
 
 <template>
@@ -38,6 +43,14 @@ const emit = defineEmits<{
       <p class="text-gray-500 mt-2 capitalize">
         Category: {{ product.category }}
       </p>
+
+      <button
+  @click="cartStore.addToCart(product)"
+  class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+>
+  Add to Cart 🛒
+</button>
+
 
     </div>
 
