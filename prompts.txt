@@ -1,0 +1,29 @@
+The aim 01: Configure Tailwind CSS with Vite
+Actual prompt: I installed tailwindcss and @tailwindcss/vite but I'm not sure how to add it to vite.config.ts. Can you show me?
+
+The aim 02: Fix TypeScript interface for API response
+Actual prompt: My DummyJSON fetch is giving a TypeScript error. The response has a products array plus total, skip and limit fields. How should I type this?
+
+The aim 03: Understanding v-for with :key
+Actual prompt: I'm using v-for to loop through products but VS Code is warning me about :key. Why do I need it and what should I use as the key?
+
+The aim 04: Fix computed filter not working
+Actual prompt: I have a computed property called filteredProducts but when I type in the search box nothing happens. I'm using v-for="product in products" — what am I missing?
+
+The aim 05: Emit event from child to parent component
+Actual prompt: My FilterBar component needs to tell App.vue which category was clicked. I know I need emit but I'm not sure how to define it with TypeScript.
+
+The aim 06: Modal not closing when clicking X button
+Actual prompt: I have a close button in my modal with @click but the modal doesn't close. My emit is defined as close: [] — is that correct?
+
+The aim 07: Pinia store setup
+Actual prompt: I installed Pinia but I'm getting an error saying getActivePinia was called with no active Pinia. How do I register it in main.ts?
+
+The aim 08: Cart quantity not updating
+Actual prompt: When I add the same product twice to cart it adds a new item instead of increasing quantity. How do I check if item already exists and increment it?
+
+The aim 09: Dark mode not applying to components
+Actual prompt: I added dark:bg-gray-800 to my components but dark mode isn't working. I added @custom-variant dark in style.css — is there anything else needed?
+
+The aim 10: Deploying Vite project to Vercel
+Actual prompt: I'm deploying my Vue 3 Vite project to Vercel. Does it auto-detect the build settings or do I need to configure anything manually?
