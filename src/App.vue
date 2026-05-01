@@ -7,6 +7,7 @@ import NavBar from './components/NavBar.vue'
 import FilterBar from './components/FilterBar.vue'
 import ProductModal from './components/ProductModal.vue'
 import Footer from './components/Footer.vue'
+import HeroBanner from './components/HeroBanner.vue'
 
 const products =    ref<Product[]>([])
 const loading =ref(true)
@@ -45,7 +46,7 @@ const closeModal = () => {
 }
 
 onMounted(async () => {
-  const response = await fetch('https://dummyjson.com/products?limit=20')
+  const response = await fetch('https://dummyjson.com/products?limit=100')
   const data: ProductsResponse = await response.json()
   products.value = data.products
   categories.value = [...new Set(data.products.map(p => p.category))]
@@ -54,9 +55,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100">
+  <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
     
+   
     <NavBar @search="searchQuery = $event" />
+    <HeroBanner />
 
     <div class="p-8">
       <div v-if="loading">
