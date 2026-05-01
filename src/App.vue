@@ -5,12 +5,15 @@ import type { Product, ProductsResponse } from './types/products'
 import ProductCard from './components/ProductCard.vue'
 import NavBar from './components/NavBar.vue'
 import FilterBar from './components/FilterBar.vue'
+import ProductModal from './components/ProductModal.vue'
 
 const products =    ref<Product[]>([])
 const loading =ref(true)
 const searchQuery = ref('')
 const selectedCategory = ref('all')
 const categories = ref<string[]>([])
+const showModal = ref(false)
+const selectedProduct = ref<Product | null>(null)
 const filteredProducts = computed(() => {
   let result = products.value
 
@@ -29,6 +32,17 @@ const filteredProducts = computed(() => {
   return result
 })
 
+
+const openModal = (product: Product) => {
+  selectedProduct.value = product
+  showModal.value = true
+}
+
+const closeModal = () => {
+  showModal.value = false
+  selectedProduct.value = null
+}
+
 onMounted(async () => {
   const response = await fetch('https://dummyjson.com/products?limit=20')
   const data: ProductsResponse = await response.json()
@@ -44,25 +58,33 @@ onMounted(async () => {
     <NavBar @search="searchQuery = $event" />
 
     <div class="p-8">
-  <div v-if="loading">
-    <p class="text-center text-gray-500">Loading products...</p>
-  </div>
+      <div v-if="loading">
+        <p class="text-center text-gray-500">Loading products...</p>
+      </div>
 
-  <div v-else>
-    <FilterBar 
-      :categories="categories"
-      :selected="selectedCategory"
-      @select="selectedCategory = $event"
-    />
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <ProductCard 
-        v-for="product in filteredProducts" 
-        :key="product.id"
-        :product="product"
+      <div v-else>
+        <FilterBar 
+          :categories="categories"
+          :selected="selectedCategory"
+          @select="selectedCategory = $event"
+        />
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <ProductCard 
+            v-for="product in filteredProducts" 
+            :key="product.id"
+            :product="product"
+            @click="openModal(product)"
+            class="cursor-pointer"
           />
         </div>
       </div>
     </div>
+
+    <ProductModal
+      v-if="showModal && selectedProduct"
+      :product="selectedProduct"
+      @close="closeModal"
+    />
 
   </div>
 </template>
